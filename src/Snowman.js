@@ -78,11 +78,13 @@ function Snowman({
         <img src={(images)[nWrong]} alt={nWrong} />
         <p>Number wrong: {nWrong}</p>
         <p className="Snowman-word">{guessedWord()}</p>
-
-        <p>{generateButtons()}</p>
+        <p>{ nWrong < 6 ? generateButtons() :
+          <p className="Snowman-end-message">
+            You lose. Word was {answer}.
+          </p>}
+        </p>
       </div>
   );
 }
-
 
 export default Snowman;

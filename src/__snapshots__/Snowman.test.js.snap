@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`if game properly ends when losing 1`] = `
+<div>
+  <div
+    class="Snowman"
+  >
+    <img
+      alt="6"
+    />
+    <p>
+      Number wrong: 
+      6
+    </p>
+    <p
+      class="Snowman-word"
+    >
+      _
+      _
+      _
+      _
+      _
+    </p>
+    <p>
+      <p
+        class="Snowman-end-message"
+      >
+        You lose. Word was 
+        apple
+        .
+      </p>
+    </p>
+  </div>
+</div>
+`;

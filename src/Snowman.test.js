@@ -1,7 +1,6 @@
 import {render, fireEvent} from "@testing-library/react";
 import Snowman from "./Snowman";
 import TEST_IMAGES from "./_testCommon";
-import React, {useState} from "react";
 
 
 test("renders without crashing", function () {
@@ -11,7 +10,7 @@ test("renders without crashing", function () {
 test("if game properly ends when losing", function (){
 
 
-  const testWord = "apple"
+  const testWord = ["apple"];
 
   const{ container, debug } = render(
     <Snowman images={TEST_IMAGES} words={testWord} maxWrong={TEST_IMAGES.length} />
@@ -35,6 +34,8 @@ test("if game properly ends when losing", function (){
   const vButton = container.querySelector('.Snowman button[value="v"]');
   fireEvent.click(vButton);
 
+  debug(container);
+
   // Expect the buttons to no longer appear on page
   expect(
     container.querySelector('.Snowman button')
@@ -42,17 +43,18 @@ test("if game properly ends when losing", function (){
 
   // Expect to see the last snowman image on page
   expect(
-    container.querySelector('img[alt="testing image 6"]')
+    container.querySelector('img[alt="6"]')
   ).toBeInTheDocument();
 
   // Expect to see the end game message
   expect(
-    container.querySelector('.end-game-message')
+    container.querySelector('.Snowman-end-message')
   ).toHaveTextContent('You lose');
 
   // Expect to see the target word
   expect(
-    container.querySelector('.end-game-message')
+    container.querySelector('.Snowman-end-message')
   ).toHaveTextContent('apple');
 
+  expect(container).toMatchSnapshot();
 });
