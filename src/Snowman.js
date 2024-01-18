@@ -28,7 +28,7 @@ import { randomWord, ENGLISH_WORDS } from "./words"
 function Snowman({
   images = [img0, img1, img2, img3, img4, img5, img6],
   words = ENGLISH_WORDS,
-  maxWrong = 6,
+  maxWrong = 6, // We're not using this anywhere
 }) {
   /** by default, allow 6 guesses and use provided gallows images. */
 
@@ -46,6 +46,8 @@ function Snowman({
       .map(ltr => (guessedLetters.has(ltr) ? ltr : "_"));
   }
 
+  // TODO: rename "won". Relocate this because its just floating between two functions
+  // put this above the return statement
   const won = !guessedWord().includes("_")
 
   /** handleGuess: handle a guessed letter:
@@ -80,22 +82,29 @@ function Snowman({
 
   function restartGame() {
     setNWrong(0);
-    setGuessedLetters(() => new Set()); //why arrow function?
+    setGuessedLetters(new Set());
     setAnswer(randomWord(words));
   };
 
+  // FIXME: nested ternaries are gross. refactor this. we're gonna confuse folks
+  // Note that ternary ? and : are on their own lines
   return (
     <div className="Snowman">
       <img src={(images)[nWrong]} alt={nWrong} />
       <p>Number wrong: {nWrong}</p>
       <p className="Snowman-word">{guessedWord()}</p>
 
-      <p>{won ?
+      <p>{won
+        ?
         <p className="Snowman-end-message">
           You win!
-        </p> :
+        </p>
+        :
 
-        <p>{nWrong < 6 ? generateButtons() :
+        <p>{nWrong < 6
+          ?
+          generateButtons()
+          :
           <p className="Snowman-end-message">
             You lose. Word was {answer}.
           </p>}
