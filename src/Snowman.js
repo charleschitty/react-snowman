@@ -78,6 +78,12 @@ function Snowman({
     ));
   }
 
+  function restartGame() {
+    setNWrong(0);
+    setGuessedLetters(() => new Set()); //why arrow function?
+    setAnswer(randomWord(words));
+  };
+
   return (
     <div className="Snowman">
       <img src={(images)[nWrong]} alt={nWrong} />
@@ -94,8 +100,8 @@ function Snowman({
             You lose. Word was {answer}.
           </p>}
         </p>}
-
-        </p>
+      </p>
+      <button className="Snowman-restart" onClick={restartGame}> Restart</button>
     </div>
   );
 }

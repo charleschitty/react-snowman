@@ -58,3 +58,29 @@ test("if game properly ends when losing", function (){
 
   expect(container).toMatchSnapshot();
 });
+
+test("restarts the game upon click", function () {
+  const testWord = ["apple","orange"];
+
+  //mock randomWord to output apple
+
+  const{ container, debug } = render(
+    <Snowman images={TEST_IMAGES} words={testWord} maxWrong={TEST_IMAGES.length} />
+  );
+
+  const aButton = container.querySelector('.Snowman button[value="a"]');
+  fireEvent.click(aButton);
+
+  // Expect the # of wrong guess to be 1 and for a to be in ...
+  expect(
+    container.querySelector('.Snowman button')
+  ).not.toBeInTheDocument();
+
+  // want to click button to restart
+  // mock randomWord to output orange
+  // check guesses wrong
+  // test out o
+  // or test out a
+
+
+});
