@@ -11,25 +11,33 @@ test("renders without crashing", function () {
 test("if game properly ends when losing", function (){
 
 
-  // const setNWrong = jest.fn();
-  // jest
-  //   .spyOn(React, 'useState')
-  //   .mockImplementationOnce(initState => [initState, setNWrong]);
   const testWord = "apple"
 
-  const{ container } = render(
+  const{ container, debug } = render(
     <Snowman images={TEST_IMAGES} words={testWord} maxWrong={TEST_IMAGES.length} />
   );
 
+  const zButton = container.querySelector('.Snowman button[value="z"]');
+  fireEvent.click(zButton);
 
-  const ltr = container.querySelector(`.Snowman.button ${ltr}`);
-  for (let i=0; i< testWord.length; i++){
-    fireEvent.click(ltr)
-  };
+  const xButton = container.querySelector('.Snowman button[value="x"]');
+  fireEvent.click(xButton);
+
+  const gButton = container.querySelector('.Snowman button[value="g"]');
+  fireEvent.click(gButton);
+
+  const yButton = container.querySelector('.Snowman button[value="y"]');
+  fireEvent.click(yButton);
+
+  const kButton = container.querySelector('.Snowman button[value="k"]');
+  fireEvent.click(kButton);
+
+  const vButton = container.querySelector('.Snowman button[value="v"]');
+  fireEvent.click(vButton);
 
   // Expect the buttons to no longer appear on page
   expect(
-    container.querySelector('button')
+    container.querySelector('.Snowman button')
   ).not.toBeInTheDocument();
 
   // Expect to see the last snowman image on page
