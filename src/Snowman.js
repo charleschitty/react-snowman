@@ -30,7 +30,7 @@ function Snowman({
     }) {
   /** by default, allow 6 guesses and use provided gallows images. */
 
-  const [nWrong, setNWrong] = useState(0);
+  const [nWrong, setNWrong] = React.useState(0);
   const [guessedLetters, setGuessedLetters] = useState(() => new Set());
   const [answer, setAnswer] = useState((words)[0]);
 
@@ -78,7 +78,7 @@ function Snowman({
         <img src={(images)[nWrong]} alt={nWrong} />
         <p>Number wrong: {nWrong}</p>
         <p className="Snowman-word">{guessedWord()}</p>
-        
+
         <p>{generateButtons()}</p>
       </div>
   );
